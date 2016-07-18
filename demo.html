@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+<head>
+	<title>树形demo</title>
+	<style type="text/css">
+		.treeNode>div{
+			display: inline-block;
+
+		}
+	</style>
+</head>
+<body>
+
+
+<div id="testtree1">test</div>
+
+<div id="test2">2</div>
+<div id="test3">3 </div>
+<div id="test4">4 </div>
+
+
+
+
+<div id="test5">5</div>
+<div id="test6">6</div>
+
+<script src="js/jQuery.js"></script>
+<script src="js/Rtree.js"></script>
+<script language="JavaScript">
+	var basicNode=new Rtree.treeNode($("#testtree1"));
+	var node2=basicNode.addChildNode($("#test2")).addChildNode($("#test3"));
+	var node4=basicNode.addChildNode($("#test4"));
+	node2.addChildNode($("#test5"));
+	node4.addChildNode($("#test6"));
+//	var node=new Rtree.treeNode($("#test2"),basicNode);
+</script>
+</body>
+</html>
