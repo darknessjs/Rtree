@@ -13,17 +13,17 @@
 <body>
 
 
-<div id="testtree1">test</div>
+<div id="testtree1">根目录</div>
 
-<div id="test2">2</div>
-<div id="test3">3 </div>
-<div id="test4">4 </div>
-
-
+<div id="test2">第一级4</div>
+<div id="test3">第二级3</div>
+<div id="test4">第一级2</div>
 
 
-<div id="test5">5</div>
-<div id="test6">6</div>
+
+
+<div id="test5">第三级5</div>
+<div id="test6">第二级6</div>
 
 <script src="js/jQuery.js"></script>
 <script src="js/Rtree.js"></script>
@@ -33,7 +33,6 @@
 	var node4=basicNode.addChildNode($("#test4"));
 	node2.addChildNode($("#test5"));
 	node4.addChildNode($("#test6"));
-//	var node=new Rtree.treeNode($("#test2"),basicNode);
 </script>
 </body>
 </html>
