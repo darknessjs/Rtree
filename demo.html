@@ -25,9 +25,46 @@
 <div id="test5">第三级5</div>
 <div id="test6">第二级6</div>
 
+<table >
+	<thead>
+		<tr>
+			<th>序号</th>
+			<th>操作</th>
+			<th>选择</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr class="testtr1">
+			<td>1</td>
+			<td>主要</td>
+			<td>xxxx</td>
+		</tr>
+		<tr class="testtr2">
+			<td>2</td>
+			<td>删除</td>
+			<td>勾</td>
+		</tr>
+		<tr  class="testtr3">
+			<td>3</td>
+			<td>增加</td>
+			<td>勾</td>
+		</tr>
+		<tr  class="testtr4">
+			<td>4</td>
+			<td>增加的子项</td>
+			<td>勾</td>
+		</tr>
+	</tbody>
+</table>
+
+
 <script src="js/jQuery.js"></script>
 <script src="js/Rtree.js"></script>
 <script language="JavaScript">
+	var table=new Rtree.treeTable($(".testtr1"),1)
+	table.addChildNode($(".testtr2"));
+	var t=table.addChildNode($(".testtr3")).addChildNode($(".testtr4"));
+	
 	var basicNode=new Rtree.treeNode($("#testtree1"));
 	var node2=basicNode.addChildNode($("#test2")).addChildNode($("#test3"));
 	var node4=basicNode.addChildNode($("#test4"));
