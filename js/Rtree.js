@@ -16,11 +16,11 @@
 
 	}(window),
 	function(Rtree){
-		Rtree.treeNode=function(jquerydiv){
+		Rtree.treeNode=function(jquerydiv,treeDeep){
 			var thisobj=this;
 			this.isHaveOpen=false;
 			this.isopen=false;
-			this.treeDeep=1;
+			this.treeDeep=treeDeep?(treeDeep+1):1;
 			this.childNode=[];
 
 
@@ -29,7 +29,7 @@
 				for(var i=0;i<this.treeDeep;i++){
 					frontStr=frontStr+Rtree.nbspStr;
 				}
-				this.jquerydiv=jquerydiv.wrap("<div class='treeNode'></div>").parent().prepend("<span class='frontStr'>"+frontStr+"</span>");
+				this.jquerydiv=jquerydiv.prepend("<span class='frontStr'>"+frontStr+"</span>");
 			}
 
 			this.hideChildNode=function(){
@@ -45,12 +45,12 @@
 
 			this.showChildNode=function(){
 				for(var i=0;i<this.childNode.length;i++){
-					this.childNode[i].jquerydiv.stop().slideDown('fast');;
+					this.childNode[i].jquerydiv.stop().slideDown('fast');
 				}
 			};
 
 			this.addChildNode=function(jquerydiv){
-				var thisNode=new Rtree.treeNode();
+				var thisNode=new Rtree.treeNode(jquerydiv,this.treeDeep);
 				this.childNode.push(thisNode);
 				if(!this.isHaveOpen){
 					this.isHaveOpen=true;
@@ -74,15 +74,11 @@
 					})
 				}
 
-				thisNode.treeDeep=this.treeDeep+1;
 				var frontStr="";
 				for(var i=0;i<thisNode.treeDeep;i++){
 					frontStr=frontStr+Rtree.nbspStr;
 				}
-				thisNode.jquerydiv=this.jquerydiv.after(function(i){
-					return "<div class='treeNode'><span class='frontStr'>"+frontStr+"</span></div>"
-				}).next(".treeNode").append(jquerydiv).hide();
-
+				thisNode.jquerydiv.hide();
 				return thisNode;
 			};
 			return this;

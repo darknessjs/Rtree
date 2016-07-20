@@ -54,6 +54,16 @@
 			<td>增加的子项</td>
 			<td>勾</td>
 		</tr>
+		<tr  class="testtr5">
+			<td>5</td>
+			<td>主要2</td>
+			<td>勾</td>
+		</tr>
+		<tr  class="testtr6">
+			<td>6</td>
+			<td>删除</td>
+			<td>勾</td>
+		</tr>
 	</tbody>
 </table>
 
@@ -61,9 +71,11 @@
 <script src="js/jQuery.js"></script>
 <script src="js/Rtree.js"></script>
 <script language="JavaScript">
-	var table=new Rtree.treeTable($(".testtr1"),1)
+	var table=new Rtree.treeTable($(".testtr1"),1);
 	table.addChildNode($(".testtr2"));
 	var t=table.addChildNode($(".testtr3")).addChildNode($(".testtr4"));
+	var table2=new Rtree.treeTable($(".testtr5"),1)
+	table2.addChildNode($(".testtr6"));
 	
 	var basicNode=new Rtree.treeNode($("#testtree1"));
 	var node2=basicNode.addChildNode($("#test2")).addChildNode($("#test3"));
