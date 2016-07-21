@@ -49,7 +49,7 @@
 				}
 			};
 
-			this.addChildNode=function(jquerydiv){
+			this.addChildNode=function(jquerydiv,isClickAll){
 				var thisNode=new Rtree.treeNode(jquerydiv,this.treeDeep);
 				this.childNode.push(thisNode);
 				if(!this.isHaveOpen){
@@ -60,18 +60,34 @@
 					}
 					frontStr=frontStr+"<span class='rtreeOpenThis'>"+Rtree.openStr+"</span>";
 					this.jquerydiv.children(".frontStr").html(frontStr);
-					this.jquerydiv.children(".frontStr").on("click",".rtreeOpenThis",function(e){
-						thisobj.isopen=!thisobj.isopen;
-						if(thisobj.isopen){
-							$(this).html(Rtree.closeStr);
-							thisobj.showChildNode();
-						}else{
-							for(var i=0;i<thisobj.childNode.length;i++){
-								thisobj.hideChildNode();
+					if(isClickAll){
+						this.jquerydiv.click(function(e) {
+							thisobj.isopen = !thisobj.isopen;
+							if (thisobj.isopen) {
+								$(this).children(".frontStr").children(".rtreeOpenThis").html(Rtree.closeStr);
+								thisobj.showChildNode();
+							} else {
+								for (var i = 0; i < thisobj.childNode.length; i++) {
+									thisobj.hideChildNode();
+								}
+								$(this).children(".frontStr").children(".rtreeOpenThis").html(Rtree.openStr)
 							}
-							$(this).html(Rtree.openStr)
-						}
-					})
+						});
+					}else{
+						this.jquerydiv.children(".frontStr").on("click",".rtreeOpenThis",function(e){
+							thisobj.isopen=!thisobj.isopen;
+							if(thisobj.isopen){
+								$(this).html(Rtree.closeStr);
+								thisobj.showChildNode();
+							}else{
+								for(var i=0;i<thisobj.childNode.length;i++){
+									thisobj.hideChildNode();
+								}
+								$(this).html(Rtree.openStr)
+							}
+						});
+					}
+
 				}
 
 				var frontStr="";
@@ -118,6 +134,9 @@
 			this.showChildNode=function(){
 				for(var i=0;i<this.childNode.length;i++){
 					this.childNode[i].jquerytr.show()
+				}
+				if(this.aftershowfunc){
+					this.aftershowfunc();
 				}
 			};
 
