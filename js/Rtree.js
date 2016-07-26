@@ -120,6 +120,7 @@
 			}
 			this.jquerytr.children("td:eq("+this.maintdindex+")").prepend("<span class='frontStr'></span>").children(".frontStr").html(frontStr).parent().parent();
 
+			//隐藏子节点
 			this.hideChildNode=function(){
 				this.isopen=false;
 				for(var i=0;i<this.childNode.length;i++){
@@ -131,6 +132,7 @@
 				}
 			};
 
+			//显示子节点
 			this.showChildNode=function(){
 				for(var i=0;i<this.childNode.length;i++){
 					this.childNode[i].jquerytr.show()
