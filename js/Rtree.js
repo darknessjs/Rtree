@@ -143,6 +143,7 @@
 			};
 
 
+			//添加子节点
 			this.addChildNode=function(jquerytr,maintdindex){
 				var thisNode=new Rtree.treeTable(jquerytr,maintdindex?maintdindex:this.maintdindex,this.treeDeep);
 				this.childNode.push(thisNode);
